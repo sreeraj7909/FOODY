@@ -1,1 +1,1 @@
-export const LOGO_URL="https://img.freepik.com/free-psd/isolated-hamburger-with-splash-ink-background_1409-3855.jpg?size=338&ext=jpg&ga=GA1.1.1141335507.1718150400&semt=ais_user"
+export const LOGO_URL="https://static.vecteezy.com/system/resources/previews/022/911/698/non_2x/colorful-burger-icon-free-illustration-free-png.png"
