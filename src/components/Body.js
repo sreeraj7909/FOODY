@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "./Card"
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 const Body=()=>{
     const [ListOfRestro,setListOfRestro]=useState([])
     const [filteredRestro,setFilteredRestro]=useState([])
@@ -31,17 +32,19 @@ const Body=()=>{
     return(
         <div className="bg-black">
               <div className="justify-between">
-                  <button className="rounded-lg bg-green-600 text-white p-2 m-2 md:mx-14 mx-20" onClick={()=>{
+                  <button className="rounded-lg bg-green-600 text-white p-2 m-2 md:mx-32 md:mt-8 mx-16" onClick={()=>{
                   setListOfRestro(ListOfRestro.filter(res=>res.info.avgRating>4))
                   }}>Top Rated Restorents</button>
                </div>
              <div className="flex flex-wrap mt-5">
                  {
-                    ListOfRestro.map(restaurent=><Card key={restaurent?.info?.id} resData={restaurent}/>)
+                    ListOfRestro.map(restaurent=><Link key={restaurent?.info?.id} to={"/restaurent/"+restaurent?.info?.id}><Card  resData={restaurent} /></Link>)
+                  
                  }
              </div>
         </div>
     )
 }
+{/* //<Link key={restaurent?.info?.id} to={"/restaurent/"+restaurent?.info?.id}> <Card  resData={restaurent}/></Link>) */}
 
 export default Body;
