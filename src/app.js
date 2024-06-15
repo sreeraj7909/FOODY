@@ -1,20 +1,40 @@
 import React from "react"
-import ReactDOM from "react-dom"
+import ReactDOM from "react-dom/client"
 import Header from "./components/Header"
 import Body from "./components/Body"
+import Error from "./components/Error"
 import Footer from "./components/Footer"
-
+import { createBrowserRouter,RouterProvider,Outlet } from "react-router-dom"
 const Applayout=()=>{
     return(
         <div>
            <Header/>
-           <Body/>
+           <Outlet/>
            <Footer/>
         </div>
     )
 }
+const appRouter=createBrowserRouter([
+    {
+        path:"/",
+        element:<Applayout/>,
+        children:[
+            { 
+             path:"/",
+             element:<Body/>   
+             
+            },
+            
+           
+        ],
+        errorElement:<Error/>
+        
+
+    },
+    
+])
 
 
 
 const root =ReactDOM.createRoot(document.getElementById("root"))
-root.render(<Applayout/>)
+root.render(<RouterProvider router={appRouter}/>)
