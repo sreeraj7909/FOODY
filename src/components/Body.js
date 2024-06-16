@@ -30,7 +30,7 @@ const Body=()=>{
     if(ListOfRestro.length===0) return <Shimmer/>
     
     return(
-        <div className="bg-black">
+        <div className="bg-black w-screen">
               <div className="justify-between">
                   <button className="rounded-lg bg-green-600 text-white p-2 m-2 md:mx-32 md:mt-8 mx-16" onClick={()=>{
                   setListOfRestro(ListOfRestro.filter(res=>res.info.avgRating>4))

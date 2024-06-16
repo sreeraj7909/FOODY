@@ -1,33 +1,46 @@
-import { useEffect, useState } from "react";
-import { MENU_URL } from "../utils/constants";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
+import useGetRestroMenu from "../utils/useRestroMenu";
+import {useParams} from "react-router-dom";
+import RestaurentCategory from "./RestaurentCategory";
+import Shimmer from "./Shimmer";
+
+
 
 
 const RestroMenu=()=>{
-      const [resMenu,setResMenu]=useState(null)
-      const {resId}=useParams()
-    useEffect(()=>{
-       fetchMenu()
-    },[])
+    const [showIndex,setShowIndex]=useState(null)
 
-    const fetchMenu=async ()=>{
-        const data= await fetch(MENU_URL+resId)
-        const json=await data.json()
-        console.log(json)
-        setResMenu(json)
-    }
     
-    if(resMenu==null) return null;
+    const {resId}=useParams()
+    
+    const restromenu=useGetRestroMenu(resId)
+    if(restromenu===null) return <Shimmer/>
+    console.log(restromenu)
+    
+    const {name,cloudinaryImageId,costForTwoMessage,avgRating,cuisines}=restromenu?.data?.cards[2]?.card?.card?.info
+    console.log(restromenu.cards)
+    
+    const itemList=restromenu.data.cards.filter((res)=>res.groupedCard)
+   
+    const categories=
 
+    itemList[0]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((res)=>
 
-    const {name,cuisines,locality}=resMenu?.data?.cards[2]?.card?.card?.info
+        res?.card?.card?.["@type"] ==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+
+    )
+  
+    
+    
     return(
-        <div>
-            <h1>{name}</h1>
-            <h1>{cuisines.join(",")}</h1>
-            <h1>{locality}</h1>
+        <div className="text-center -my-5  h-screen">
+           <h2 className="font-bold m-4 pt-11 text-2xl  ">{name}</h2>
+           <p className="font-bold text-xl">{cuisines.join(",")}</p>
+           
+             { categories.map((category,index)=> <RestaurentCategory key={category?.card?.card.title} 
+             data={category?.card?.card} showItems={index===showIndex ? true : false}
+             setShowIndex={()=>setShowIndex(index)}/>)}
         </div>
     )
 }
-
 export default RestroMenu;
