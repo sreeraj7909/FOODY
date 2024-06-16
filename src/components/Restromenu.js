@@ -15,10 +15,10 @@ const RestroMenu=()=>{
     
     const restromenu=useGetRestroMenu(resId)
     if(restromenu===null) return <Shimmer/>
-    console.log(restromenu)
+    
     
     const {name,cloudinaryImageId,costForTwoMessage,avgRating,cuisines}=restromenu?.data?.cards[2]?.card?.card?.info
-    console.log(restromenu.cards)
+    
     
     const itemList=restromenu.data.cards.filter((res)=>res.groupedCard)
    

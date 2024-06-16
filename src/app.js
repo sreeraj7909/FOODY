@@ -6,14 +6,19 @@ import Error from "./components/Error"
 import Footer from "./components/Footer"
 import RestroMenu from "./components/Restromenu"
 import About from "./components/About"
+import {Provider} from "react-redux"
+import appStore from "./utils/appStore"
+import Cart from "./components/Cart"
 import { createBrowserRouter,RouterProvider,Outlet } from "react-router-dom"
 const Applayout=()=>{
     return(
+        <Provider store={appStore}>
         <div>
            <Header/>
            <Outlet/>
-           <Footer/>
+         
         </div>
+        </Provider>
     )
 }
 const appRouter=createBrowserRouter([
@@ -32,6 +37,10 @@ const appRouter=createBrowserRouter([
             },{
                 path:"/about",
                 element:<About/>
+            },
+            {
+                path:"/cart",
+                element:<Cart/>
             }
             
            

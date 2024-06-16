@@ -11,10 +11,14 @@ const useGetRestroMenu=()=>{
     },[])
 
     const getData=async ()=>{
+        try{
         const data=await fetch(MENU_URL+resId)
         const json=await data.json()
         setResMenu(json)
-    }
+    }catch(error){console.log(error)
+        return null
+      } 
+}
 
  return resMenu
 }
