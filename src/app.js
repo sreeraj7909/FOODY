@@ -13,11 +13,11 @@ import { createBrowserRouter,RouterProvider,Outlet } from "react-router-dom"
 const Applayout=()=>{
     return(
         <Provider store={appStore}>
-        <div>
+         <div>
            <Header/>
            <Outlet/>
          
-        </div>
+         </div>
         </Provider>
     )
 }
