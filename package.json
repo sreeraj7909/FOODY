@@ -1,11 +1,13 @@
 {
+  "homepage": "https://sreeraj7909.github.io/spices",
   "name": "burgerhub_food",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
   "scripts": {
     "test": "jest",
     "start": "parcel index.html",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "build": "parcel build index.html"
   },
   "author": "",
